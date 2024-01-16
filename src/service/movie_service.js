@@ -24,7 +24,7 @@ export const getSearchMovies = async (query, page) => {
   const { data } = await axios.get('/search/movie', {
     params: { include_adult: false, query, page },
   });
-  //   console.log('getSearchMovies :>> ', data);
+  console.log('getSearchMovies :>> ', data);
   return data;
 };
 

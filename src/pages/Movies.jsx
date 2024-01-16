@@ -21,6 +21,8 @@ export const Movies = () => {
   const [searchQuery, setSearchQuery] = useSearchParams();
 
   useEffect(() => {
+    setError('');
+
     const query = searchQuery.get('query');
     const page = Number(searchQuery.get('page'));
 
@@ -30,7 +32,10 @@ export const Movies = () => {
     const getData = async () => {
       try {
         const resp = await getSearchMovies(query, page);
+        console.log('resp :>> ', resp);
         setMovies([...resp.results]);
+        console.log('page :>> ', page);
+        console.log('totalPage :>> ', resp.total_pages);
 
         setIsPrevBtnVisible(page > 1);
         setIsNextBtnVisible(page < resp.total_pages);
@@ -46,7 +51,7 @@ export const Movies = () => {
 
   const searchHandler = query => {
     setMovies([]);
-    setSearchQuery({ query });
+    setSearchQuery({ query, page: 1 });
   };
 
   const changePageNumber = step => {
@@ -65,14 +70,14 @@ export const Movies = () => {
         {searchQuery.get('query') && (
           <>
             <div>
-              {isPrevBtnVisible && (
+              {isPrevBtnVisible && !error && (
                 <button type="button" onClick={() => changePageNumber(-1)}>
                   Previos page
                 </button>
               )}
               <div></div>
-              {isNextBtnVisible && (
-                <button type="button" onClick={() => changePageNumber(+1)}>
+              {isNextBtnVisible && !error && (
+                <button type="button" onClick={() => changePageNumber(1)}>
                   Next page
                 </button>
               )}
