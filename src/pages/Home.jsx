@@ -1,10 +1,10 @@
 import { getTrendingMovies } from 'service/movie_service';
-import { Container, CountryList, Heading, Loader, Section } from 'components';
+import { Container, Heading, Loader, MoviesList, Section } from 'components';
 import { useEffect, useState } from 'react';
 
 export const Home = () => {
   const [error, setError] = useState('');
-  const [countries, setCountries] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,8 @@ export const Home = () => {
 
       try {
         const resp = await getTrendingMovies();
-        setCountries(resp);
+        console.log('resp :>> ', resp);
+        setMovies(resp);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -30,7 +31,7 @@ export const Home = () => {
       <Container>
         {isLoading && <Loader />}
         {error && <Heading>{error}</Heading>}
-        <CountryList countries={countries} />
+        <MoviesList movies={movies} />
       </Container>
     </Section>
   );

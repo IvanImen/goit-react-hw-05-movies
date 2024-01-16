@@ -10,7 +10,7 @@ export const SearchFormStyled = styled.form`
   margin-bottom: ${({ theme }) => theme.spacing(20)};
 `;
 
-export const Select = styled.select`
+export const Input = styled.input`
   width: 100%;
   height: 50px;
 

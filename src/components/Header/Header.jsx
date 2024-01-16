@@ -23,7 +23,7 @@ export const Header = () => {
 
             <LinkWrapper>
               <NavLinkStyled to={routes.HOME}>Home</NavLinkStyled>
-              <NavLinkStyled to={routes.COUNTRY}>Countries</NavLinkStyled>
+              <NavLinkStyled to={routes.MOVIES}>Movies</NavLinkStyled>
             </LinkWrapper>
           </HeaderWrapper>
         </Container>

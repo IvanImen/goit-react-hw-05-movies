@@ -1,25 +1,17 @@
 import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { BtnSearch, Select, SearchFormStyled } from './SearchForm.styled';
+import { BtnSearch, SearchFormStyled, Input } from './SearchForm.styled';
 
-const regions = [
-  { id: 'africa', value: 'africa', name: 'Africa' },
-  { id: 'america', value: 'america', name: 'America' },
-  { id: 'asia', value: 'asia', name: 'Asia' },
-  { id: 'europe', value: 'europe', name: 'Europe' },
-  { id: 'oceania', value: 'oceania', name: 'Oceania' },
-];
-
-export const SearchForm = ({ searchByRegion }) => {
-  const [region, setRegion] = useState('');
+export const SearchForm = ({ searchByQuery }) => {
+  const [movieQuery, setMovieQuery] = useState('');
 
   const onChangeHandler = e => {
-    setRegion(e.target.value);
+    setMovieQuery(e.target.value);
   };
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    searchByRegion(region);
+    searchByQuery(movieQuery);
   };
 
   return (
@@ -27,22 +19,14 @@ export const SearchForm = ({ searchByRegion }) => {
       <BtnSearch type="submit">
         <FiSearch size="16px" />
       </BtnSearch>
-      <Select
-        aria-label="select"
-        name="region"
+      <Input
+        type="text"
+        name="movie"
         required
+        placeholder="Enter movie title here"
         onChange={onChangeHandler}
-      >
-        <option selected disabled defaultValue="">
-          Select a region and press enter
-        </option>
-        {regions &&
-          regions.map(({ id, name, value }) => (
-            <option key={id} value={value}>
-              {name}
-            </option>
-          ))}
-      </Select>
+        value={movieQuery}
+      ></Input>
     </SearchFormStyled>
   );
 };

@@ -2,7 +2,7 @@ export * from 'components/App/App';
 export * from 'components/App/App.styled';
 export * from 'components/CountryInfo/CountryInfo';
 export * from 'components/CountryInfo/CountryInfo.styled';
-export * from 'components/CountryList/CountryList';
+export * from 'components/MoviesList/MoviesList';
 export * from 'components/GoBackBtn/GoBackBtn';
 export * from 'components/GoBackBtn/GoBackBtn.styled';
 export * from 'components/Header/Header';
