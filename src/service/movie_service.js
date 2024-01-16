@@ -24,13 +24,13 @@ export const getSearchMovies = async (query, page) => {
   const { data } = await axios.get('/search/movie', {
     params: { include_adult: false, query, page },
   });
-  console.log('getSearchMovies :>> ', data);
+  // console.log('getSearchMovies :>> ', data);
   return data;
 };
 
 export const getMovieDetails = async id => {
   const { data } = await axios.get(`/movie/${id}`);
-  console.log('getMovieDetails :>> ', data);
+  // console.log('getMovieDetails :>> ', data);
   return data;
 };
 
@@ -38,7 +38,7 @@ export const getMovieCredits = async id => {
   const {
     data: { cast },
   } = await axios.get(`/movie/${id}/credits`);
-  console.log('getMovieCredits :>> ', cast);
+  // console.log('getMovieCredits :>> ', cast);
   return cast;
 };
 
@@ -46,6 +46,6 @@ export const getMovieReviews = async id => {
   const {
     data: { results },
   } = await axios.get(`/movie/${id}/reviews`);
-  console.log('getMovieReviews :>> ', results);
+  // console.log('getMovieReviews :>> ', results);
   return results;
 };

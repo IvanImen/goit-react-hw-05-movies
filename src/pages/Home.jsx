@@ -14,7 +14,6 @@ export const Home = () => {
 
       try {
         const resp = await getTrendingMovies();
-        console.log('resp :>> ', resp);
         setMovies(resp);
       } catch (error) {
         setError(error.message);

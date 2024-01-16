@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { Section, Container, Loader, Heading, MovieInfo } from 'components';
 import { useEffect, useState } from 'react';
-import { getMovieDetails } from 'service/movie_service';
+import { getMovieCredits } from 'service/movie_service';
+import { CastList } from 'components/CastList/CastList';
+import { Container, Heading, Section } from 'components/App/App.styled';
+import { Loader } from 'components';
 
-export const MovieDetails = () => {
+export const Cast = () => {
   const [error, setError] = useState('');
-  const [movie, setMovie] = useState({});
+  const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const { movieId } = useParams();
@@ -16,8 +18,10 @@ export const MovieDetails = () => {
       setError('');
 
       try {
-        const resp = await getMovieDetails(movieId);
-        setMovie(resp);
+        const resp = await getMovieCredits(movieId);
+        if (!resp.length)
+          setError('We don`t have information about cast for this movie');
+        setCast(resp);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -33,7 +37,7 @@ export const MovieDetails = () => {
       <Container>
         {isLoading && <Loader />}
         {error && <Heading>{error}</Heading>}
-        <MovieInfo movie={movie} />
+        <CastList cast={cast} />
       </Container>
     </Section>
   );

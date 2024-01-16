@@ -32,10 +32,8 @@ export const Movies = () => {
     const getData = async () => {
       try {
         const resp = await getSearchMovies(query, page);
-        console.log('resp :>> ', resp);
+
         setMovies([...resp.results]);
-        console.log('page :>> ', page);
-        console.log('totalPage :>> ', resp.total_pages);
 
         setIsPrevBtnVisible(page > 1);
         setIsNextBtnVisible(page < resp.total_pages);
