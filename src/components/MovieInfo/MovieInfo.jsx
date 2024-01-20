@@ -1,16 +1,21 @@
 import { useRef } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { GoBackBtn } from 'components';
 import {
-  CountryWrapper,
-  CountryDescription,
-  Flag,
-  Image,
-  CountryTitle,
-  CountryCapital,
-  CountryDetail,
-  Accent,
-} from './MovieInfo.styled';
+  AdditionalInfo,
+  AdditionalTitle,
+  DetailsBtn,
+  DetailsBtnWrapper,
+  GoBackBtn,
+  MovieDescription,
+  MovieGenre,
+  MovieOverviewHeader,
+  MovieOwerview,
+  MoviePopularity,
+  MovieTitle,
+  MovieWrapper,
+  Poster,
+} from 'components';
+import { Image, Accent } from './MovieInfo.styled';
 
 const BASE_IMAGE_URL = 'http://image.tmdb.org/t/p/';
 const POSTER_SIZE = 'w342';
@@ -31,45 +36,47 @@ export const MovieInfo = ({
   return (
     <>
       <GoBackBtn path={goBack.current}>Go back</GoBackBtn>
-      <CountryWrapper>
-        <Flag>
+      <MovieWrapper>
+        <Poster>
           <Image
             src={`${BASE_IMAGE_URL}${POSTER_SIZE}${poster_path}`}
             alt={title}
           />
-        </Flag>
-        <CountryDescription>
-          <CountryCapital>
+        </Poster>
+        <MovieDescription>
+          <MovieTitle>
             Title:{' '}
             <Accent>
-              {title}({release_date})
+              {title} ({release_date?.slice(0, 4)})
             </Accent>
-          </CountryCapital>
+          </MovieTitle>
 
-          <CountryDetail>
+          <MoviePopularity>
             Popularity: <Accent>{popularity}</Accent>
-          </CountryDetail>
+          </MoviePopularity>
 
-          <h2>Overview</h2>
-          <CountryTitle>{overview}</CountryTitle>
+          <MovieOverviewHeader>Overview</MovieOverviewHeader>
+          <MovieOwerview>{overview}</MovieOwerview>
 
-          <CountryDetail>
+          <MovieGenre>
             Genres: <Accent>{genres.map(({ name }) => name).join(', ')}</Accent>
-          </CountryDetail>
-        </CountryDescription>
-      </CountryWrapper>
-      <div>
-        <h3>Editional information</h3>
-        <ul>
-          <li>
-            <NavLink to="cast">Cast</NavLink>
-          </li>
-          <li>
-            <NavLink to="reviews">Reviews</NavLink>
-          </li>
-        </ul>
-        <Outlet />
-      </div>
+          </MovieGenre>
+        </MovieDescription>
+      </MovieWrapper>
+      <MovieWrapper>
+        <AdditionalInfo>
+          <AdditionalTitle>Additional information</AdditionalTitle>
+          <DetailsBtnWrapper>
+            <DetailsBtn>
+              <NavLink to="cast">Cast</NavLink>
+            </DetailsBtn>
+            <DetailsBtn>
+              <NavLink to="reviews">Reviews</NavLink>
+            </DetailsBtn>
+          </DetailsBtnWrapper>
+        </AdditionalInfo>
+      </MovieWrapper>
+      <Outlet />
     </>
   );
 };

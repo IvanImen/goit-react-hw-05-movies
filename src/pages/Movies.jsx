@@ -7,6 +7,8 @@ import {
   Heading,
   Loader,
   MoviesList,
+  PrevNextBtn,
+  PrevNextBtnWrapper,
 } from 'components';
 import { useEffect, useState } from 'react';
 import { getSearchMovies } from 'service/movie_service';
@@ -67,19 +69,19 @@ export const Movies = () => {
 
         {searchQuery.get('query') && (
           <>
-            <div>
+            <PrevNextBtnWrapper>
               {isPrevBtnVisible && !error && (
-                <button type="button" onClick={() => changePageNumber(-1)}>
+                <PrevNextBtn type="button" onClick={() => changePageNumber(-1)}>
                   Previos page
-                </button>
+                </PrevNextBtn>
               )}
               <div></div>
               {isNextBtnVisible && !error && (
-                <button type="button" onClick={() => changePageNumber(1)}>
+                <PrevNextBtn type="button" onClick={() => changePageNumber(1)}>
                   Next page
-                </button>
+                </PrevNextBtn>
               )}
-            </div>
+            </PrevNextBtnWrapper>
             <MoviesList movies={movies} />
           </>
         )}

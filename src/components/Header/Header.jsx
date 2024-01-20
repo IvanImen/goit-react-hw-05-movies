@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react';
 import { Container } from 'components/App/App.styled';
 
-import { FaFlagUsa } from 'react-icons/fa';
+import { BiSolidMoviePlay } from 'react-icons/bi';
 import { Outlet } from 'react-router-dom';
 import { routes } from 'routes';
 import {
@@ -19,7 +19,7 @@ export const Header = () => {
       <NavBar>
         <Container>
           <HeaderWrapper>
-            <FaFlagUsa size="40px" color={theme.colors.light} />
+            <BiSolidMoviePlay size="40px" color={theme.colors.light} />
 
             <LinkWrapper>
               <NavLinkStyled to={routes.HOME}>Home</NavLinkStyled>

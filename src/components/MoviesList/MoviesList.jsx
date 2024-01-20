@@ -1,5 +1,13 @@
-import { Grid, GridItem } from 'components';
+import {
+  Grid,
+  GridImage,
+  GridImageWrapper,
+  GridItem,
+  GridItemTitle,
+} from 'components';
 import { Link, useLocation } from 'react-router-dom';
+
+import moviePlaceholder from '../../images/movie_placeholder.jpg';
 
 const BASE_IMAGE_URL = 'http://image.tmdb.org/t/p/';
 const POSTER_SIZE = 'w185';
@@ -11,11 +19,17 @@ export const MoviesList = ({ movies }) => {
       {movies.map(({ id, title, poster_path }) => (
         <GridItem key={id}>
           <Link to={`/movies/${id}`} state={{ from: location }}>
-            <img
-              src={`${BASE_IMAGE_URL}${POSTER_SIZE}${poster_path}`}
-              alt={title}
-            />
-            <p>{title}</p>
+            <GridImageWrapper>
+              <GridImage
+                src={
+                  poster_path
+                    ? `${BASE_IMAGE_URL}${POSTER_SIZE}${poster_path}`
+                    : moviePlaceholder
+                }
+                alt={title}
+              />
+            </GridImageWrapper>
+            <GridItemTitle>{title}</GridItemTitle>
           </Link>
         </GridItem>
       ))}

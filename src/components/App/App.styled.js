@@ -82,6 +82,7 @@ export const Grid = styled.ul`
 `;
 
 export const GridItem = styled.li`
+  padding: ${({ theme }) => theme.spacing(2.5)};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,5 +100,54 @@ export const GridItem = styled.li`
   &:focus {
     transform: scale(1.05);
     box-shadow: 0px 2px 10px 2px ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const GridImageWrapper = styled.div`
+  width: 100%;
+  height: 286px;
+  overflow: hidden;
+`;
+
+export const GridImage = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+export const GridItemTitle = styled.h2`
+  margin-top: ${({ theme }) => theme.spacing(2.5)};
+  color: ${({ theme }) => theme.colors.light};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+  font-weight: 700;
+  text-align: center;
+
+  transition-property: color;
+  transition-duration: 0.2s;
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.white};
+  }
+`;
+
+export const PrevNextBtnWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PrevNextBtn = styled.button`
+  color: ${({ theme }) => theme.colors.white};
+
+  letter-spacing: 0.06em;
+  border: 1px solid ${({ theme }) => theme.colors.light};
+  border-radius: ${({ theme }) => theme.spacing(1)};
+  margin-bottom: ${({ theme }) => theme.spacing(15)};
+  padding: 12px 18px;
+  transition: background-color ${({ theme }) => theme.animations.cubicBezier};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.imageBackground};
   }
 `;
